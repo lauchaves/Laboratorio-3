@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView textLongitud = (TextView) findViewById(R.id.textLongitud);
+        TextView textLatitud = (TextView) findViewById(R.id.textLatitud);
+
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean networkLocationEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         if(!networkLocationEnabled){
             //show dialog to allow user to enable location settings
-
+            textLatitud.setText(locationManager.getAllProviders().get(0));
         }
     }
 
